@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   <script>
     tailwind.config = {
@@ -92,7 +93,57 @@
     .logo-pulse {
       animation: pulseRing 2.8s ease-in-out infinite;
     }
+    .qw-map-pin {
+      width: 22px;
+      height: 22px;
+      border-radius: 9999px;
+      background: #FF6B00;
+      border: 3px solid #06193D;
+      box-shadow: 0 0 0 6px rgba(255, 107, 0, 0.28);
+    }
+    .leaflet-popup-content-wrapper {
+      border-radius: 14px;
+      font-family: 'DM Sans', sans-serif;
+    }
+      /* Scoped Styling for Terms & Conditions Page Only */
+    #view-terms {
+      font-family: 'Plus Jakarta Sans', 'DM Sans', sans-serif;
+      background: linear-gradient(180deg, #F4F8FD 0%, #FFFFFF 45%, #F8FBFF 100%);
+    }
+    #view-terms .tc-display {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    #view-terms .tc-hero {
+      background: linear-gradient(135deg, #06193D 0%, #0E3473 55%, #164C9E 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #view-terms .tc-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 85% 20%, rgba(255, 138, 51, 0.16), transparent 45%);
+      pointer-events: none;
+    }
+    #view-terms .tc-card {
+      background: #FFFFFF;
+      border: 1px solid #DCE8F7;
+      box-shadow: 0 10px 30px -12px rgba(10, 38, 92, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    #view-terms .tc-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px -14px rgba(10, 38, 92, 0.12);
+    }
+    #view-terms .tc-accent-bar {
+      width: 44px;
+      height: 3px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #FF7A1A, #1349A3);
+    }
   </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body class="antialiased selection:bg-navy-600 selection:text-white">
 
@@ -818,6 +869,207 @@
     </section>
   </main>
 
+  <!-- ========================================================= -->
+  <!-- VIEW 4: TERMS & CONDITIONS PAGE                           -->
+  <!-- ========================================================= -->
+  <main id="view-terms" class="page-view">
+    <section class="tc-hero text-white py-14 sm:py-20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="mb-6">
+          <button type="button" onclick="navigateTo('home')" class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-sky-200 hover:text-white transition-colors">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Back to Home</span>
+          </button>
+        </div>
+        <div class="max-w-3xl space-y-4">
+          <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-brandorange-300 bg-white/10 px-4 py-1.5 rounded-full border border-white/15">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            <span>Legal &amp; Policy • India</span>
+          </span>
+          <h1 class="tc-display text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
+            Terms &amp; Conditions
+          </h1>
+          <p class="text-slate-200/90 text-sm sm:text-base leading-relaxed">
+            Please read these Terms and Conditions carefully before using the Quick Wash Repair website and doorstep appliance repair services.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 sm:py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <!-- Entire Agreement -->
+        <article class="tc-card rounded-3xl p-6 sm:p-9 space-y-4">
+          <div class="flex items-center justify-between gap-4 flex-wrap">
+            <div class="space-y-1.5">
+              <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-brandorange-600 bg-brandorange-50 px-3 py-1 rounded-full">India</span>
+              <h2 class="tc-display text-2xl sm:text-3xl font-bold text-navy-900">Entire Agreement</h2>
+            </div>
+            <div class="w-11 h-11 rounded-2xl bg-ice-100 text-navy-800 flex items-center justify-center">
+              <i data-lucide="scale" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <div class="tc-accent-bar"></div>
+          <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+            These Terms constitute the entire agreement between you and <strong>QUICK WASH REPAIR</strong> regarding the subject matter herein, superseding all prior written or oral communications. No modifications to these Terms are valid unless in writing and signed by both parties. <strong>QUICK WASH REPAIR</strong> reserves the right to update these Terms, effective upon notice to you or posting on our website, for any Advertising Products ordered thereafter.
+          </p>
+        </article>
+
+        <!-- Disclaimer -->
+        <article class="tc-card rounded-3xl p-6 sm:p-9 space-y-4">
+          <div class="flex items-center justify-between gap-4 flex-wrap">
+            <div class="space-y-1.5">
+              <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-navy-700 bg-ice-100 px-3 py-1 rounded-full">Independent Service Notice</span>
+              <h2 class="tc-display text-2xl sm:text-3xl font-bold text-navy-900">Disclaimer</h2>
+            </div>
+            <div class="w-11 h-11 rounded-2xl bg-ice-100 text-navy-800 flex items-center justify-center">
+              <i data-lucide="shield-alert" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <div class="tc-accent-bar"></div>
+          <div class="space-y-3 text-slate-700 text-sm sm:text-base leading-relaxed">
+            <p>
+              This website (<a href="https://quickwash-repair-8l5y.vercel.app" target="_blank" rel="noopener noreferrer" class="text-navy-700 font-semibold underline decoration-brandorange-400 underline-offset-4 hover:text-brandorange-600">https://quickwash-repair-8l5y.vercel.app</a>) is owned and operated by <strong>QUICK WASH REPAIR Concepts</strong>. We provide independent repair and home services for various brands. We are not affiliated with, authorized by, or endorsed by any brands. All brand names and trademarks mentioned on this website are the property of their respective owners and are used solely for descriptive purposes.
+            </p>
+            <p>
+              <strong>QUICK WASH REPAIR Concepts</strong> reserves the right to add, alter, or delete material from the website at any time. The images used on this website may include free stock images and are not necessarily representative of the company's actual services.
+            </p>
+          </div>
+        </article>
+
+        <!-- Grievance Officer & Contact Information Grid -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Grievance Officer -->
+          <article class="tc-card rounded-3xl p-6 sm:p-8 space-y-4">
+            <div class="flex items-center justify-between gap-3">
+              <div class="space-y-1">
+                <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">Redressal</span>
+                <h2 class="tc-display text-2xl font-bold text-navy-900">Grievance Officer</h2>
+              </div>
+              <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                <i data-lucide="user-check" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <div class="tc-accent-bar"></div>
+            <div class="bg-ice-50 border border-ice-200 rounded-2xl p-4 space-y-1.5 text-sm">
+              <p><strong class="text-navy-900">Name:</strong> <span class="text-slate-700 font-medium">SYED ROUSHAN AHMED</span></p>
+              <p><strong class="text-navy-900">Company:</strong> <span class="text-slate-700 font-medium">QUICK WASH REPAIR</span></p>
+            </div>
+            <p class="text-slate-700 text-sm leading-relaxed">
+              If you have any questions about this Policy, how we process or handle your personal data, or otherwise, you may reach out to us, with your queries, grievances, feedback, and comments at
+              <a href="mailto:quickwashrepair22@gmail.com" class="text-navy-700 font-semibold underline decoration-brandorange-400 underline-offset-2 hover:text-brandorange-600 break-all">quickwashrepair22@gmail.com</a>.
+            </p>
+          </article>
+
+          <!-- 15. Contact Information -->
+          <article class="tc-card rounded-3xl p-6 sm:p-8 space-y-4">
+            <div class="flex items-center justify-between gap-3">
+              <div class="space-y-1">
+                <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-brandorange-600 bg-brandorange-50 px-3 py-1 rounded-full">Section 15</span>
+                <h2 class="tc-display text-2xl font-bold text-navy-900">15. Contact Information</h2>
+              </div>
+              <div class="w-10 h-10 rounded-2xl bg-brandorange-50 text-brandorange-600 flex items-center justify-center">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <div class="tc-accent-bar"></div>
+            <p class="text-slate-700 text-sm leading-relaxed">
+              For any questions or concerns about these Terms, or if you need to contact us for any reason, please reach out to us at:
+            </p>
+            <div class="bg-ice-50 border border-ice-200 rounded-2xl p-4 space-y-2 text-sm text-slate-700">
+              <p>
+                <strong class="text-navy-900">Email:</strong>
+                <a href="mailto:quickwashrepair22@gmail.com" class="text-navy-700 font-semibold hover:text-brandorange-600 break-all">quickwashrepair22@gmail.com</a>
+              </p>
+              <p class="leading-relaxed">
+                <strong class="text-navy-900">Address:</strong> QUICK WASH REPAIR, Shop No. 18, 1st Floor, BDA Complex, 2nd Block, Stage 1, HBR Layout, Bengaluru, Karnataka 560043, India.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Acknowledgement Banner -->
+        <div class="rounded-3xl bg-navy-900 text-white p-6 sm:p-8 shadow-lg border border-navy-800 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+          <div class="space-y-2">
+            <p class="text-sm sm:text-base text-slate-100 leading-relaxed">
+              By using the Services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions, as well as any policies or guidelines referenced herein.
+            </p>
+            <p class="text-xs sm:text-sm text-brandorange-300 font-semibold">
+              Thank you for choosing QUICK WASH REPAIR —
+              <a href="https://quickwash-repair-8l5y.vercel.app" target="_blank" rel="noopener noreferrer" class="underline hover:text-white">https://quickwash-repair-8l5y.vercel.app</a>
+            </p>
+          </div>
+          <button type="button" onclick="navigateTo('washing-machine', 'repair-options')" class="shrink-0 bg-brandorange-500 hover:bg-brandorange-600 text-white font-semibold text-sm px-6 py-3 rounded-full shadow transition-all">
+            Book Doorstep Service
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Location & Bengaluru Service Coverage Map (Visible on Every Page) -->
+  <section id="service-map-section" class="py-14 bg-gradient-to-b from-ice-50 to-ice-100 border-t border-ice-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-3xl border border-ice-200 shadow-xl overflow-hidden grid lg:grid-cols-12">
+        <!-- Left Info & Area Selector -->
+        <div class="lg:col-span-5 p-6 sm:p-8 lg:p-10 bg-navy-950 text-white flex flex-col justify-between gap-6">
+          <div class="space-y-4">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-brandorange-300 text-xs font-semibold uppercase tracking-wider">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i>
+              Live Service Hub &amp; Coverage Map
+            </span>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold leading-tight">
+              Find Us in RT Nagar, Bengaluru
+            </h2>
+            <p class="text-sm text-sky-100/85 leading-relaxed">
+              Our technicians dispatch from RT Nagar for 60–90 minute doorstep washing machine repairs across Bengaluru. Click any zone below to explore coverage on the map.
+            </p>
+
+            <div class="bg-white/10 border border-white/15 rounded-2xl p-4 space-y-2 text-sm">
+              <p class="font-display font-semibold text-brandorange-300 text-base">Quick Wash Repair</p>
+              <p class="text-slate-200 leading-relaxed">
+                No 15B, 5th Cross, MM Layout, RT Nagar Post,<br />
+                Bangalore, Karnataka, India - 560032
+              </p>
+              <div class="pt-1 flex flex-col gap-1 text-xs text-sky-200">
+                <span><strong>Email:</strong> quickwashrepair22@gmail.com</span>
+                <span><strong>Phone:</strong> +91 80739 19943</span>
+              </div>
+            </div>
+
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wider text-sky-200 mb-2.5">Quick-Jump Service Zones</p>
+              <div class="flex flex-wrap gap-2" id="map-zone-buttons">
+                <button type="button" onclick="focusMapZone('hub')" class="px-3 py-1.5 rounded-xl bg-brandorange-500 hover:bg-brandorange-600 text-white text-xs font-semibold transition-colors">RT Nagar (Hub)</button>
+                <button type="button" onclick="focusMapZone('yelahanka')" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-sky-100 text-xs font-medium transition-colors">Yelahanka</button>
+                <button type="button" onclick="focusMapZone('indiranagar')" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-sky-100 text-xs font-medium transition-colors">Indiranagar</button>
+                <button type="button" onclick="focusMapZone('whitefield')" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-sky-100 text-xs font-medium transition-colors">Whitefield</button>
+                <button type="button" onclick="focusMapZone('koramangala')" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-sky-100 text-xs font-medium transition-colors">Koramangala</button>
+                <button type="button" onclick="focusMapZone('jayanagar')" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-sky-100 text-xs font-medium transition-colors">Jayanagar</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-3 pt-2">
+            <button type="button" onclick="focusMapZone('hub')" class="px-4 py-2.5 rounded-xl bg-white text-navy-950 hover:bg-ice-100 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+              <i data-lucide="crosshair" class="w-4 h-4 text-brandorange-500"></i>
+              <span>Center on Hub</span>
+            </button>
+            <a href="https://www.google.com/maps/search/?api=1&query=13.0235581,77.6098734" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-navy-700 hover:bg-navy-600 text-white text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+              <span>Open Directions</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Leaflet Map Container -->
+        <div class="lg:col-span-7 relative bg-ice-100">
+          <div id="quickwash-map" class="w-full" style="height: 440px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="bg-navy-950 text-slate-300 py-14 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -835,6 +1087,7 @@
             <li><button type="button" onclick="navigateTo('home')" class="hover:text-brandorange-300 transition-colors">Home</button></li>
             <li><button type="button" onclick="navigateTo('services')" class="hover:text-brandorange-300 transition-colors">Our Services</button></li>
             <li><button type="button" onclick="navigateTo('washing-machine')" class="hover:text-brandorange-300 transition-colors">Doorstep Service</button></li>
+            <li><button type="button" onclick="navigateTo('terms')" class="hover:text-brandorange-300 transition-colors">Terms &amp; Conditions</button></li>
           </ul>
         </div>
 
@@ -849,9 +1102,9 @@
               <i data-lucide="mail" class="w-4 h-4 text-brandorange-300"></i>
               <a href="mailto:quickwashrepair22@gmail.com" class="hover:text-brandorange-300 transition-colors break-all">quickwashrepair22@gmail.com</a>
             </li>
-            <li class="flex items-center gap-2">
-              <i data-lucide="map-pin" class="w-4 h-4 text-sky-300"></i>
-              <span>Service Area: Most of Bengaluru</span>
+            <li class="flex items-start gap-2">
+              <i data-lucide="map-pin" class="w-4 h-4 text-sky-300 shrink-0 mt-0.5"></i>
+              <span>No 15B, 5th Cross, MM Layout, RT Nagar Post, Bangalore, Karnataka, India - 560032</span>
             </li>
           </ul>
         </div>
@@ -875,8 +1128,23 @@
         </div>
       </div>
 
-      <div class="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
-        <p>© <span id="year-span">2026</span> QuickWash Repair. All rights reserved.</p>
+      <div class="mt-8 bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5 text-xs sm:text-sm text-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div>
+          <p class="font-display font-semibold text-white">Quick Wash Repair</p>
+          <p class="text-slate-300 mt-0.5">No 15B, 5th Cross, MM Layout, RT Nagar Post, Bangalore, Karnataka, India - 560032</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-slate-300">
+          <span><strong class="text-white">Email:</strong> quickwashrepair22@gmail.com</span>
+          <span><strong class="text-white">Phone:</strong> +91 80739 19943</span>
+          <button type="button" onclick="navigateTo('terms')" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-brandorange-500 text-white font-semibold text-xs transition-colors">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            <span>Terms &amp; Conditions</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+        <p>© <span id="year-span">2026</span> Quick Wash Repair. All rights reserved.</p>
         <p>Doorstep Washing Machine Service Experts • Bengaluru</p>
       </div>
     </div>
@@ -911,27 +1179,27 @@
         </div>
 
         <button type="submit" class="w-full bg-brandorange-500 hover:bg-brandorange-600 text-white font-semibold text-sm py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 transition-all">
-          <i data-lucide="send" class="w-4 h-4"></i>
-          <span>Confirm &amp; Send to WhatsApp</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          <span>Submit Details</span>
         </button>
       </form>
 
       <!-- Confirmation Step (Shown after submit) -->
       <div id="modal-booking-success" class="hidden space-y-4">
-        <div class="flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-2xl p-3.5">
-          <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0">
-            <i data-lucide="check" class="w-5 h-5"></i>
+        <div id="modal-status-banner" class="flex items-center gap-3 bg-sky-50 border border-sky-200 rounded-2xl p-3.5">
+          <div id="modal-status-icon" class="w-9 h-9 rounded-xl bg-navy-700 text-white flex items-center justify-center shrink-0">
+            <i data-lucide="clipboard-check" class="w-5 h-5"></i>
           </div>
           <div>
-            <p class="font-display font-semibold text-sm text-navy-900">Booking Details Ready!</p>
-            <p class="text-xs text-slate-600">Tap below to open WhatsApp (+91 8073919943).</p>
+            <p id="modal-status-title" class="font-display font-semibold text-sm text-navy-900">Review Your Booking Details</p>
+            <p id="modal-status-subtitle" class="text-xs text-slate-600">Verify your details below and click to confirm your booking.</p>
           </div>
         </div>
         <pre id="modal-wa-preview" class="bg-white border border-ice-200 rounded-2xl p-3.5 text-xs text-slate-700 whitespace-pre-wrap font-sans leading-relaxed"></pre>
         <div class="flex gap-2.5">
-          <a id="modal-wa-link" href="https://wa.me/918073919943" target="_blank" rel="noopener noreferrer" class="flex-1 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm py-3 rounded-xl text-center transition-colors">
-            Open WhatsApp
-          </a>
+          <button type="button" id="modal-confirm-booking-btn" class="flex-1 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm py-3 rounded-xl text-center transition-colors cursor-pointer">
+            Click to confirm booking
+          </button>
           <button type="button" id="modal-copy-btn" class="bg-ice-200 hover:bg-slate-200 text-slate-800 font-semibold text-sm py-3 px-4 rounded-xl transition-colors">
             Copy
           </button>
@@ -1024,6 +1292,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
       if (window.lucide) lucide.createIcons();
+      if (qwMap) setTimeout(() => qwMap.invalidateSize(), 150);
     }
 
     function scrollToId(id) {
@@ -1081,12 +1350,30 @@
       if (icon) icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
     }
 
+    function resetConfirmButtonState() {
+      const confirmBtn = document.getElementById('modal-confirm-booking-btn');
+      const banner = document.getElementById('modal-status-banner');
+      const iconBox = document.getElementById('modal-status-icon');
+      const title = document.getElementById('modal-status-title');
+      const subtitle = document.getElementById('modal-status-subtitle');
+      if (confirmBtn) {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = 'Click to confirm booking';
+        confirmBtn.className = 'flex-1 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm py-3 rounded-xl text-center transition-colors cursor-pointer';
+      }
+      if (banner) banner.className = 'flex items-center gap-3 bg-sky-50 border border-sky-200 rounded-2xl p-3.5';
+      if (iconBox) iconBox.className = 'w-9 h-9 rounded-xl bg-navy-700 text-white flex items-center justify-center shrink-0';
+      if (title) title.textContent = 'Review Your Booking Details';
+      if (subtitle) subtitle.textContent = 'Verify your details below and click to confirm your booking.';
+    }
+
     function openSmallBookingBox(repairType) {
       selectedLoadRepair = repairType;
       document.getElementById('modal-selected-repair').textContent = repairType;
       document.getElementById('modal-form-error').classList.add('hidden');
       document.getElementById('small-booking-form').classList.remove('hidden');
       document.getElementById('modal-booking-success').classList.add('hidden');
+      resetConfirmButtonState();
       document.getElementById('small-booking-modal').classList.remove('hidden');
       document.getElementById('modal-cust-name').focus();
       if (window.lucide) lucide.createIcons();
@@ -1134,9 +1421,8 @@
             `Mobile Number: ${mobile}\n` +
             `Please confirm my doorstep technician visit.`;
 
-          const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
           document.getElementById('modal-wa-preview').textContent = message;
-          document.getElementById('modal-wa-link').setAttribute('href', waUrl);
+          resetConfirmButtonState();
           bookingForm.classList.add('hidden');
           document.getElementById('modal-booking-success').classList.remove('hidden');
           if (window.lucide) lucide.createIcons();
@@ -1162,6 +1448,36 @@
         });
       }
 
+      const confirmBookingBtn = document.getElementById('modal-confirm-booking-btn');
+      if (confirmBookingBtn) {
+        confirmBookingBtn.addEventListener('click', () => {
+          const refId = 'QW-' + Math.floor(1000 + Math.random() * 9000);
+          const name = document.getElementById('modal-cust-name').value.trim();
+          const mobile = document.getElementById('modal-cust-mobile').value.trim();
+          const banner = document.getElementById('modal-status-banner');
+          const iconBox = document.getElementById('modal-status-icon');
+          const title = document.getElementById('modal-status-title');
+          const subtitle = document.getElementById('modal-status-subtitle');
+
+          if (banner) banner.className = 'flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-2xl p-3.5';
+          if (iconBox) iconBox.className = 'w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0';
+          if (title) title.textContent = `Booking Confirmed! (Ref: ${refId})`;
+          if (subtitle) subtitle.textContent = `Thank you, ${name}. Our technician will contact ${mobile} within 60–90 mins.`;
+
+          confirmBookingBtn.disabled = true;
+          confirmBookingBtn.textContent = 'Booking Confirmed ✓';
+          confirmBookingBtn.className = 'flex-1 bg-emerald-600 text-white font-semibold text-sm py-3 rounded-xl text-center cursor-default opacity-90';
+
+          try {
+            const bookings = JSON.parse(localStorage.getItem('quickwash_bookings') || '[]');
+            bookings.push({ refId, service: selectedLoadRepair, name, mobile, createdAt: new Date().toISOString() });
+            localStorage.setItem('quickwash_bookings', JSON.stringify(bookings));
+          } catch (_) {}
+        });
+      }
+
+      initQuickWashMap();
+
       const modal = document.getElementById('small-booking-modal');
       if (modal) {
         modal.addEventListener('click', (e) => {
@@ -1169,6 +1485,62 @@
         });
       }
     });
+
+    let qwMap = null;
+    const qwZoneMarkers = {};
+    const qwZones = {
+      hub: { coords: [13.0235581, 77.6098734], zoom: 14, label: '<strong>Quick Wash Repair (Main Hub)</strong><br/>No 15B, 5th Cross, MM Layout, RT Nagar Post<br/>Bangalore - 560032 • +91 80739 19943' },
+      yelahanka: { coords: [13.1007, 77.5963], zoom: 13, label: '<strong>Yelahanka Service Zone</strong><br/>Same-day doorstep visit (60–90 mins)' },
+      indiranagar: { coords: [12.9784, 77.6408], zoom: 13, label: '<strong>Indiranagar Service Zone</strong><br/>Same-day doorstep visit (60–90 mins)' },
+      whitefield: { coords: [12.9698, 77.7500], zoom: 13, label: '<strong>Whitefield Service Zone</strong><br/>Same-day doorstep visit (60–90 mins)' },
+      koramangala: { coords: [12.9352, 77.6245], zoom: 13, label: '<strong>Koramangala Service Zone</strong><br/>Same-day doorstep visit (60–90 mins)' },
+      jayanagar: { coords: [12.9299, 77.5838], zoom: 13, label: '<strong>Jayanagar Service Zone</strong><br/>Same-day doorstep visit (60–90 mins)' }
+    };
+
+    function initQuickWashMap() {
+      const container = document.getElementById('quickwash-map');
+      if (!container || typeof L === 'undefined') return;
+      qwMap = L.map('quickwash-map', { scrollWheelZoom: false }).setView(qwZones.hub.coords, 12);
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri',
+        maxZoom: 19
+      }).addTo(qwMap);
+
+      L.circle(qwZones.hub.coords, {
+        color: '#0B63CE',
+        fillColor: '#1D78EC',
+        fillOpacity: 0.1,
+        weight: 1.5,
+        radius: 12000
+      }).addTo(qwMap);
+
+      const hubIcon = L.divIcon({
+        className: '',
+        html: '<div class="qw-map-pin"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11],
+        popupAnchor: [0, -12]
+      });
+
+      Object.entries(qwZones).forEach(([key, z]) => {
+        const marker = key === 'hub'
+          ? L.marker(z.coords, { icon: hubIcon }).addTo(qwMap)
+          : L.circleMarker(z.coords, { radius: 7, color: '#06193D', weight: 2, fillColor: '#FF6B00', fillOpacity: 0.9 }).addTo(qwMap);
+        marker.bindPopup(z.label);
+        qwZoneMarkers[key] = marker;
+      });
+
+      qwZoneMarkers.hub.openPopup();
+    }
+
+    function focusMapZone(key) {
+      const zone = qwZones[key];
+      if (!qwMap || !zone) return;
+      qwMap.flyTo(zone.coords, zone.zoom, { duration: 0.8 });
+      if (qwZoneMarkers[key]) {
+        setTimeout(() => qwZoneMarkers[key].openPopup(), 450);
+      }
+    }
   </script>
 </body>
 </html>
