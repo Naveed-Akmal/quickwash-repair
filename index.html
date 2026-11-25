@@ -78,13 +78,86 @@
     .page-view {
       display: none;
     }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+    body {
+      overscroll-behavior-y: smooth;
+    }
+    a, button {
+      transition: color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  background-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    a:active, button:active {
+      transform: scale(0.985);
+    }
+    .card-hover {
+      will-change: transform, box-shadow;
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.32s ease;
+    }
     .page-view.active {
       display: block;
-      animation: fadeInPage 0.25s ease-out;
+      animation: fadeInPage 0.42s cubic-bezier(0.22, 1, 0.36, 1);
     }
     @keyframes fadeInPage {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    .smooth-reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .smooth-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Cool & Impressive Service Timing Card */
+    .timing-glass-card {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.05) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 16px 36px -12px rgba(4, 15, 38, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease;
+    }
+    .timing-glass-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 138, 51, 0.55);
+      box-shadow: 0 20px 42px -12px rgba(255, 107, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    }
+    .timing-glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+      transform: skewX(-20deg);
+      animation: timingShimmer 5.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes timingShimmer {
+      0%, 55% { left: -120%; }
+      100% { left: 160%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .smooth-reveal { opacity: 1; transform: none; transition: none; }
+      .timing-glass-card::before { animation: none; }
     }
     @keyframes pulseRing {
       0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.32); }
@@ -157,7 +230,7 @@
         </span>
         <span class="hidden md:inline-flex items-center gap-1.5 text-slate-300">
           <i data-lucide="clock" class="w-3.5 h-3.5 text-brandorange-300"></i>
-          Same Day Doorstep Service • 8:00 AM – 9:00 PM
+          Same Day Doorstep Service • 9:30 AM – 7:30 PM
         </span>
       </div>
       <div class="flex items-center gap-3">
@@ -231,7 +304,7 @@
   <main id="view-home" class="page-view active">
     <!-- Hero Section -->
     <section id="top" class="brand-hero text-white relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 relative z-10">
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <!-- Left Copy -->
           <div class="lg:col-span-7 space-y-6">
@@ -305,6 +378,36 @@
               <div class="flex items-center gap-2">
                 <i data-lucide="handshake" class="w-5 h-5 text-sky-200"></i>
                 <span>Transparent Pricing</span>
+              </div>
+            </div>
+
+            <!-- Service Timing Highlight Card (Home Page) -->
+            <div class="timing-glass-card rounded-2xl p-4 sm:px-5 sm:py-4 max-w-xl">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brandorange-400 to-brandorange-600 text-white flex items-center justify-center shadow-lg shadow-brandorange-500/30 shrink-0">
+                    <i data-lucide="clock" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span class="text-[11px] font-semibold uppercase tracking-[0.14em] text-brandorange-300">Service Timings</span>
+                      <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-300 bg-emerald-500/15 border border-emerald-400/25 px-2 py-0.5 rounded-full">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                        </span>
+                        Mon – Sat
+                      </span>
+                    </div>
+                    <p class="font-display text-lg sm:text-xl font-semibold text-white tracking-tight mt-0.5">
+                      9:30 AM <span class="text-brandorange-300 mx-1">to</span> 7:30 PM
+                    </p>
+                  </div>
+                </div>
+                <div class="text-left sm:text-right border-l sm:border-l-0 sm:border-r-0 border-white/15 pl-3 sm:pl-0">
+                  <p class="text-xs font-medium text-sky-100">Monday – Saturday</p>
+                  <p class="text-[11px] text-slate-300/90">Same-Day Doorstep Visit</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1286,7 +1389,9 @@
       if (targetId) {
         const dest = document.getElementById(targetId);
         if (dest) {
-          dest.scrollIntoView({ behavior: 'auto', block: 'start' });
+          requestAnimationFrame(() => {
+            dest.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
         }
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1477,6 +1582,7 @@
       }
 
       initQuickWashMap();
+      initSmoothReveal();
 
       const modal = document.getElementById('small-booking-modal');
       if (modal) {
@@ -1540,6 +1646,28 @@
       if (qwZoneMarkers[key]) {
         setTimeout(() => qwZoneMarkers[key].openPopup(), 450);
       }
+    }
+    function initSmoothReveal() {
+      const targets = document.querySelectorAll('section .card-hover, #home-book-logo-section .max-w-4xl');
+      if (!targets.length) return;
+      if (!('IntersectionObserver' in window)) {
+        targets.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+
+      targets.forEach((el, idx) => {
+        el.classList.add('smooth-reveal');
+        el.style.transitionDelay = ((idx % 3) * 70) + 'ms';
+        observer.observe(el);
+      });
     }
   </script>
 </body>
