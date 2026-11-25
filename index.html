@@ -1564,13 +1564,23 @@
           const title = document.getElementById('modal-status-title');
           const subtitle = document.getElementById('modal-status-subtitle');
 
+          const waMessage =
+            `Hello QuickWash Repair,\n` +
+            `Booking Ref: ${refId}\n` +
+            `Selected Doorstep Service: ${selectedLoadRepair} (Starts at ₹299)\n` +
+            `Customer Name: ${name}\n` +
+            `Mobile Number: ${mobile}\n` +
+            `Please confirm my doorstep technician visit.`;
+
+          const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
+
           if (banner) banner.className = 'flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-2xl p-3.5';
           if (iconBox) iconBox.className = 'w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0';
           if (title) title.textContent = `Booking Confirmed! (Ref: ${refId})`;
-          if (subtitle) subtitle.textContent = `Thank you, ${name}. Our technician will contact ${mobile} within 60–90 mins.`;
+          if (subtitle) subtitle.textContent = `Redirecting to WhatsApp with your details, ${name}...`;
 
           confirmBookingBtn.disabled = true;
-          confirmBookingBtn.textContent = 'Booking Confirmed ✓';
+          confirmBookingBtn.textContent = 'Redirecting to WhatsApp ✓';
           confirmBookingBtn.className = 'flex-1 bg-emerald-600 text-white font-semibold text-sm py-3 rounded-xl text-center cursor-default opacity-90';
 
           try {
@@ -1578,6 +1588,11 @@
             bookings.push({ refId, service: selectedLoadRepair, name, mobile, createdAt: new Date().toISOString() });
             localStorage.setItem('quickwash_bookings', JSON.stringify(bookings));
           } catch (_) {}
+
+          const waWin = window.open(waUrl, '_blank', 'noopener,noreferrer');
+          if (!waWin) {
+            window.location.href = waUrl;
+          }
         });
       }
 
